@@ -3,16 +3,16 @@ from use_cases.director.create_project.create_project_dto import CreateProjectDT
 from fastapi import Request, Response
 from entities.project import Project
 
-class GetProjectUseCase:
+class GetProjectByIDUseCase:
     def __init__(self, project_repository: ProjectRepository):
         self.project_repository = project_repository
 
-    def execute(self, response: Response, request: Request):
+    def execute(self, project_id: str, response: Response, request: Request):
 
-        projects = self.project_repository.get_all_projects()
-        if not projects:
+        project = self.project_repository.get_project_by_id(project_id)
+        if not project:
             response.status_code = 407
             return {"status": "error"}
         
         response.status_code = 200
-        return projects
+        return project

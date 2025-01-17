@@ -38,3 +38,33 @@ class ProjectRepository:
         project_dict = project.to_mongo().to_dict()
         project_dict['_id'] = str(project_dict['_id'])
         return project_dict
+    
+    def update(self,project_id:str,updated_data:dict)->None:
+        project = ProjectModel.objects.with_id(project_id)
+        updated_data = updated_data.model_dump()
+        if not project:
+            raise ValueError("Projeto não encontrado")
+        for key, value in updated_data.items():
+            if hasattr(project, key):
+                setattr(project, key, value)
+
+        project.save()
+
+    def get_all_projects(self) -> List[dict]:
+
+        projects = ProjectModel.objects()
+        result = []
+
+        for project in projects:
+            project_dict = project.to_mongo().to_dict()
+            project_dict['_id'] = str(project_dict['_id']) 
+            result.append(project_dict)
+
+        return result
+
+    def delete_project(self,project_id:str)->dict:
+        project = ProjectModel.objects.with_id(project_id)
+        if not project:
+            return False
+        project.delete()
+        return True

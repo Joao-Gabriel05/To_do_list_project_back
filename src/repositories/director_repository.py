@@ -71,3 +71,5 @@ class DirectorsRepository:
     def update_email(self, id: str, email: str) -> None:
         DirectorsModel.objects(id=id).update(set__email = email)
         return None
+    
+    #Passsar request dai ir chave e valor pela meu update e fazer match com a base de dados 
