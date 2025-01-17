@@ -8,13 +8,14 @@ class EditProjectUseCase:
         self.project_repository = project_repository
 
     def execute(self, project_id: str, edit_project_dto: EditProjectDTO, response: Response, request: Request):
-        self.project_repository.update(project_id, edit_project_dto)
+        try:
+            self.project_repository.update(project_id, edit_project_dto)
             
-        response.status_code = 200
-        return {"status": "success", "message": "Projeto atualizado com sucesso"}
-        # except ValueError as e:
-        #     response.status_code = 404
-        #     return {"status": "error", "message": str(e)}
-        # except Exception as e:
-        #     response.status_code = 500
-        #     return {"status": "error", "message": "Erro ao atualizar o projeto"}
+            response.status_code = 200
+            return {"status": "success", "message": "Projeto atualizado com sucesso"}       
+        except ValueError as e:
+            response.status_code = 404
+            return {"status": "error", "message": str(e)}
+        except Exception as e:
+            response.status_code = 500
+            return {"status": "error", "message": "Erro ao atualizar o projeto"}
