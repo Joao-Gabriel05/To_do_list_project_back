@@ -1,12 +1,10 @@
-import dotenv
 from pydantic import BaseModel
-from typing import Literal, Optional, List
-dotenv.load_dotenv()
+from typing import Literal, Optional
 
-class Task(BaseModel):
+class CreateTaskDTO(BaseModel):
     _id: str
     status: Literal["não iniciado","em progresso","finalizado"]
-    members: List[str]
+    members: list[str]
     priority : Literal["pouco importante","importante","muito importante"]
     title:str
     due_date: str
