@@ -11,8 +11,8 @@ class GetTaskUseCase:
 
         tasks = self.task_repository.get_all_tasks()
         if not tasks:
-            response.status_code = 407
-            return {"status": "error"}
+            response.status_code = 204
+            return {"status": "success", "message": "Nenhuma tarefa encontrada"}
         
         response.status_code = 200
         return tasks
