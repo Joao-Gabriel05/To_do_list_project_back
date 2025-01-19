@@ -3,8 +3,7 @@ from typing import Literal, Optional
 
 class CreateTaskDTO(BaseModel):
     _id: str
-    status: Literal["não iniciado","em progresso","finalizado"]
-    members: list[str]
+    status: Literal["pendente","em progresso","finalizada"]
     priority : Literal["pouco importante","importante","muito importante"]
     title:str
     due_date: str

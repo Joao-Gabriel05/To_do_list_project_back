@@ -15,7 +15,6 @@ class TaskModel(Document):
     ]
 
     status = StringField(required=True)
-    members = ListField(StringField(), required = True)
     priority = StringField(required=True)
     title = StringField(required=True)
     due_date = StringField(required=True)

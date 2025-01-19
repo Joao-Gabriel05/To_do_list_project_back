@@ -5,8 +5,7 @@ dotenv.load_dotenv()
 
 class Task(BaseModel):
     _id: str
-    status: Literal["não iniciado","em progresso","finalizado"]
-    members: List[str]
+    status: Literal["pendente","em progresso","finalizada"]
     priority : Literal["pouco importante","importante","muito importante"]
     title:str
     due_date: str

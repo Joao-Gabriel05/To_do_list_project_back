@@ -9,7 +9,6 @@ class CreateTaskUseCase:
 
     def execute(self, create_task_dto: CreateTaskDTO, response: Response, request: Request):
         if (not create_task_dto.status or 
-            not create_task_dto.members or 
             not create_task_dto.priority or 
             not create_task_dto.title or 
             not create_task_dto.due_date):
@@ -18,7 +17,6 @@ class CreateTaskUseCase:
 
         task = Task(
             status=create_task_dto.status,
-            members=create_task_dto.members,
             priority=create_task_dto.priority,
             title=create_task_dto.title,
             due_date=create_task_dto.due_date,
